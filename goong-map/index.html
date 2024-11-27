@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css" />
+  <title>JUNO_OKYO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container">
+    <h1>Demo: Goong Map API</h1>
+
+    <article>
+      <header>
+        <h3>Thông tin đặt hàng</h3>
+      </header>
+
+      <form id="checkoutForm">
+        <div class="grid">
+          <div>
+            <label for="fullName">Họ và tên</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Nhập họ tên của bạn" autofocus
+              value="Example">
+          </div>
+          <div>
+            <label for="phone">Số điện thoại</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại của bạn"
+              value="0123456879">
+          </div>
+        </div>
+
+        <div class="address-container">
+          <label for="address">Địa chỉ</label>
+          <input type="text" id="address" name="address" required placeholder="Nhập địa chỉ của bạn" autocomplete="off">
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="city">Tỉnh/Thành phố</label>
+            <input type="text" id="city" name="city" required placeholder="Nhập tỉnh/thành phố">
+          </div>
+          <div>
+            <label for="district">Quận/Huyện</label>
+            <input type="text" id="district" name="district" required placeholder="Nhập quận/huyện">
+          </div>
+          <div>
+            <label for="ward">Phường/Xã</label>
+            <input type="text" id="ward" name="ward" required placeholder="Nhập phường/xã">
+          </div>
+        </div>
+
+        <button type="submit">Đặt hàng</button>
+      </form>
+    </article>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
