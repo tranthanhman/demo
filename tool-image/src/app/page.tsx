@@ -12,7 +12,16 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const FRAMES = [
+// Define types
+type Frame = {
+  id: string;
+  url: string;
+  name: string;
+};
+
+type FileType = "png" | "jpeg";
+
+const FRAMES: Frame[] = [
   {
     id: "simple",
     url: "/frame-1.png",
@@ -36,12 +45,12 @@ const FRAMES = [
 ];
 
 export default function ImageFrameGenerator() {
-  const [text, setText] = useState("");
-  const [fontSize, setFontSize] = useState(24);
-  const [fontColor, setFontColor] = useState("#000000");
-  const [fileType, setFileType] = useState("png");
-  const [currentFrame, setCurrentFrame] = useState(FRAMES[0]);
-  const frameRef = useRef(null);
+  const [text, setText] = useState<string>("");
+  const [fontSize, setFontSize] = useState<number>(24);
+  const [fontColor, setFontColor] = useState<string>("#000000");
+  const [fileType, setFileType] = useState<FileType>("png");
+  const [currentFrame, setCurrentFrame] = useState<Frame>(FRAMES[0]);
+  const frameRef = useRef<HTMLDivElement>(null);
 
   const handleExport = useCallback(() => {
     if (!frameRef.current) return;
@@ -53,6 +62,7 @@ export default function ImageFrameGenerator() {
     canvas.height = frameElement.offsetHeight;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const img = new Image();
     img.onload = () => {
@@ -128,9 +138,9 @@ export default function ImageFrameGenerator() {
           <div className="space-y-3">
             <Select
               value={currentFrame.id}
-              onValueChange={(value) => {
+              onValueChange={(value: string) => {
                 const frame = FRAMES.find((f) => f.id === value);
-                setCurrentFrame(frame);
+                if (frame) setCurrentFrame(frame);
               }}
             >
               <SelectTrigger>
@@ -167,7 +177,10 @@ export default function ImageFrameGenerator() {
                 className="w-24"
               />
 
-              <Select value={fileType} onValueChange={setFileType}>
+              <Select
+                value={fileType}
+                onValueChange={(value: FileType) => setFileType(value)}
+              >
                 <SelectTrigger className="w-24">
                   <SelectValue placeholder="Định dạng" />
                 </SelectTrigger>
